@@ -14,7 +14,6 @@ public class Book {
     private String categoria;
     private String genere;
     private int nPagine;
-    private boolean illustrazioni;
     private String autoreIllustrazioni;
     private String lingua;
     private Date ddp;
@@ -75,14 +74,6 @@ public class Book {
         this.nPagine = nPagine;
     }
 
-    //ILLUSTRAZIONI
-    public boolean isIllustrazioni() {
-        return illustrazioni;
-    }
-    public void setIllustrazioni(boolean illustrazioni) {
-        this.illustrazioni = illustrazioni;
-    }
-
     //AUTORE
     public String getAutoreIllustrazioni() {
         return autoreIllustrazioni;
@@ -107,8 +98,8 @@ public class Book {
         this.ddp = ddp;
     }
 
-    //COSTRUTTORE
-    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, boolean illustrazioni, String autoreIllustrazioni, String lingua, Date ddp) {
+    //COSTRUTTORE CON ILLUSTRATORE
+    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, String autoreIllustrazioni, String lingua, Date ddp) {
         this.id = id;
         this.titolo = titolo;
         this.isbn = isbn;
@@ -116,12 +107,23 @@ public class Book {
         this.categoria = categoria;
         this.genere = genere;
         this.nPagine = nPagine;
-        this.illustrazioni = illustrazioni;
         this.autoreIllustrazioni = autoreIllustrazioni;
         this.lingua = lingua;
         this.ddp = ddp;
     }
 
+    //COSTRUTTORE SENZA ILLUSTRATORE
+    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, String lingua, Date ddp) {
+        this.id = id;
+        this.titolo = titolo;
+        this.isbn = isbn;
+        this.autore = autore;
+        this.categoria = categoria;
+        this.genere = genere;
+        this.nPagine = nPagine;
+        this.lingua = lingua;
+        this.ddp = ddp;
+    }
 
     @Override
     public String toString() {
