@@ -1,5 +1,7 @@
 package com.example.BitBi.entities;
 
+import java.util.Date;
+
 public class Book {
 
 /*id, titolo, isbn, autore, npagine, categoria, genere, illustrazioni (boolean), autore illustrazioni (opzionale), commento
@@ -9,8 +11,132 @@ public class Book {
     private String titolo;
     private String isbn;
     private String autore;
+    private String categoria;
+    private String genere;
     private int nPagine;
+    private boolean illustrazioni;
+    private String autoreIllustrazioni;
+    private String lingua;
+    private Date ddp;
+
+    //ID
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    //TITOLO
+    public String getTitolo() {
+        return titolo;
+    }
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    //ISBN
+    public String getIsbn() {
+        return isbn;
+    }
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    //AUTORE
+    public String getAutore() {
+        return autore;
+    }
+    public void setAutore(String autore) {
+        this.autore = autore;
+    }
+
+    //CATEGORIA
+    public String getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    //GENERE
+    public String getGenere() {
+        return genere;
+    }
+    public void setGenere(String genere) {
+        this.genere = genere;
+    }
+
+    //NUMEROPAGINE
+    public int getnPagine() {
+        return nPagine;
+    }
+    public void setnPagine(int nPagine) {
+        this.nPagine = nPagine;
+    }
+
+    //ILLUSTRAZIONI
+    public boolean isIllustrazioni() {
+        return illustrazioni;
+    }
+    public void setIllustrazioni(boolean illustrazioni) {
+        this.illustrazioni = illustrazioni;
+    }
+
+    //AUTORE
+    public String getAutoreIllustrazioni() {
+        return autoreIllustrazioni;
+    }
+    public void setAutoreIllustrazioni(String autoreIllustrazioni) {
+        this.autoreIllustrazioni = autoreIllustrazioni;
+    }
+
+    //LINGUA
+    public String getLingua() {
+        return lingua;
+    }
+    public void setLingua(String lingua) {
+        this.lingua = lingua;
+    }
+
+    //DATAPUBBLICAZIONE
+    public Date getDdp() {
+        return ddp;
+    }
+    public void setDdp(Date ddp) {
+        this.ddp = ddp;
+    }
+
+    //COSTRUTTORE
+    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, boolean illustrazioni, String autoreIllustrazioni, String lingua, Date ddp) {
+        this.id = id;
+        this.titolo = titolo;
+        this.isbn = isbn;
+        this.autore = autore;
+        this.categoria = categoria;
+        this.genere = genere;
+        this.nPagine = nPagine;
+        this.illustrazioni = illustrazioni;
+        this.autoreIllustrazioni = autoreIllustrazioni;
+        this.lingua = lingua;
+        this.ddp = ddp;
+    }
 
 
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", titolo='" + titolo + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", autore='" + autore + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", genere='" + genere + '\'' +
+                ", nPagine=" + nPagine +
+                ", illustrazioni=" + illustrazioni +
+                ", autoreIllustrazioni='" + autoreIllustrazioni + '\'' +
+                ", lingua='" + lingua + '\'' +
+                ", ddp=" + ddp +
+                '}';
+    }
 }
