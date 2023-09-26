@@ -9,6 +9,6 @@ public class BitBiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BitBiApplication.class, args);
 	}
-//spingendo p
+
 
 }
