@@ -17,6 +17,9 @@ public class Book {
     private String autoreIllustrazioni;
     private String lingua;
     private Date ddp;
+    private boolean hide;
+    private Date dataDiCreazione;
+    private Date ultimaModifica;
 
     //ID
     public int getId() {
@@ -135,7 +138,6 @@ public class Book {
                 ", categoria='" + categoria + '\'' +
                 ", genere='" + genere + '\'' +
                 ", nPagine=" + nPagine +
-                ", illustrazioni=" + illustrazioni +
                 ", autoreIllustrazioni='" + autoreIllustrazioni + '\'' +
                 ", lingua='" + lingua + '\'' +
                 ", ddp=" + ddp +
