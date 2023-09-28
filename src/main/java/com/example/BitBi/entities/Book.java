@@ -21,6 +21,10 @@ public class Book {
     private Date dataDiCreazione;
     private Date ultimaModifica;
 
+    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, String autoreIllustrazioni, String lingua, java.sql.Date ddp, boolean hide, java.sql.Date dataDiCreazione, java.sql.Date ultimaModifica) {
+    }
+
+
     //ID
     public int getId() {
         return id;
@@ -94,7 +98,7 @@ public class Book {
     }
 
     //DATAPUBBLICAZIONE
-    public Date getDdp() {
+    public java.sql.Date getDdp() {
         return ddp;
     }
     public void setDdp(Date ddp) {
