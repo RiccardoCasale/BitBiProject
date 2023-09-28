@@ -99,7 +99,7 @@ public class Book {
 
     //DATAPUBBLICAZIONE
     public java.sql.Date getDdp() {
-        return ddp;
+        return (java.sql.Date) ddp;
     }
     public void setDdp(Date ddp) {
         this.ddp = ddp;
