@@ -1,5 +1,6 @@
 package com.example.BitBi.entities;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Book {
@@ -97,7 +98,33 @@ public class Book {
         this.lingua = lingua;
     }
 
+    //HIDE
+    public boolean isHide() {
+        return hide;
+    }
+    public void setHide(boolean hide) {
+        this.hide = hide;
+    }
+
+    //DATA DI CREAZIONE
+    public Date getDataDiCreazione() {
+        return dataDiCreazione;
+    }
+    public void setDataDiCreazione(Date dataDiCreazione) {
+        this.dataDiCreazione = dataDiCreazione;
+    }
+
+    //ULTIMA MODIFICA
+    public Date getUltimaModifica() {
+        return ultimaModifica;
+    }
+    public void setUltimaModifica(Date ultimaModifica) {
+        this.ultimaModifica = ultimaModifica;
+    }
+
     //DATAPUBBLICAZIONE
+    /*Serve per convertire date di java in un oggetto che ci permette di utilizzarlo su sql
+     */
     public java.sql.Date getDdp() {
         return (java.sql.Date) ddp;
     }
@@ -105,8 +132,7 @@ public class Book {
         this.ddp = ddp;
     }
 
-    //COSTRUTTORE CON ILLUSTRATORE
-    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, String autoreIllustrazioni, String lingua, Date ddp) {
+    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, String lingua, Date ddp, boolean hide, Date dataDiCreazione, Date ultimaModifica , String ... autoreIllustrazioni) {
         this.id = id;
         this.titolo = titolo;
         this.isbn = isbn;
@@ -114,22 +140,12 @@ public class Book {
         this.categoria = categoria;
         this.genere = genere;
         this.nPagine = nPagine;
-        this.autoreIllustrazioni = autoreIllustrazioni;
+        this.autoreIllustrazioni = Arrays.toString(autoreIllustrazioni);
         this.lingua = lingua;
         this.ddp = ddp;
-    }
-
-    //COSTRUTTORE SENZA ILLUSTRATORE
-    public Book(int id, String titolo, String isbn, String autore, String categoria, String genere, int nPagine, String lingua, Date ddp) {
-        this.id = id;
-        this.titolo = titolo;
-        this.isbn = isbn;
-        this.autore = autore;
-        this.categoria = categoria;
-        this.genere = genere;
-        this.nPagine = nPagine;
-        this.lingua = lingua;
-        this.ddp = ddp;
+        this.hide = hide;
+        this.dataDiCreazione = dataDiCreazione;
+        this.ultimaModifica = ultimaModifica;
     }
 
     @Override

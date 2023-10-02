@@ -39,7 +39,8 @@ public class BookController {
     @GetMapping(value = "/book")
     public ResponseEntity<Iterable<BookDto>> getAllBooks(){
         List<BookDto> bookDtoList = new ArrayList<>();
-        var books = bookService.g
+        var books = bookService.getAllBooks();
+        return ResponseEntity.ok(bookDtoList);
     }
 
 }
