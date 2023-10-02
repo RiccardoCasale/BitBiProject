@@ -13,4 +13,7 @@ public class BookDto {
     private String autoreIllustrazioni;
     private String lingua;
 
+
+    public BookDto(int id, String titolo, String autore) {
+    }
 }

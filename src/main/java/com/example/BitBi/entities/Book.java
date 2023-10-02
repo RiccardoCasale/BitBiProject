@@ -1,8 +1,13 @@
 package com.example.BitBi.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.Arrays;
 import java.util.Date;
 
+@Entity
+@Table(name = "Book")
 public class Book {
 
 /*id, titolo, isbn, autore, npagine, categoria, genere, illustrazioni (boolean), autore illustrazioni (opzionale), commento
