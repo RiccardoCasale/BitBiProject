@@ -15,7 +15,9 @@ public interface BookService {
     Optional<Book> findBookById(long id);
 
     // Metodo per creare o aggiornare un libro
-    Book createOrUpdateBook(Book book);
+    Book createBook(Book book);
+
+    void updateBook(Book book);
 
     // Metodo per eliminare un libro per ID
     void deleteBookById(long id);

@@ -1,24 +1,56 @@
 package com.example.BitBi.dto;
 
 import com.example.BitBi.entities.Book;
+import java.sql.Date;
 
-import java.time.LocalDate;
-
-//DATA TRANSFER OBJECT. è un design pattern. Lo usiamo per trasferire dati tra i diversi componenti dell'applicazione
+// DATA TRANSFER OBJECT. È un design pattern. Lo usiamo per trasferire dati tra i diversi componenti dell'applicazione
 @Data
 public class BookDto {
 
     private int id;
     private String titolo;
+    private String isbn;
     private String autore;
     private String categoria;
     private String genere;
     private int nPagine;
     private String autoreIllustrazioni;
     private String lingua;
+    private Date ddp;
+    private boolean hide;
+    private Date dataDiCreazione;
+    private Date ultimaModifica;
 
+    public BookDto(int id, String titolo, String autore, String isbn, String categoria, String genere, int nPagine, String autoreIllustrazioni, String lingua, Date ddp, boolean hide, Date dataDiCreazione, Date ultimaModifica) {
+        this.id = id;
+        this.titolo = titolo;
+        this.isbn = isbn;
+        this.autore = autore;
+        this.categoria = categoria;
+        this.genere = genere;
+        this.nPagine = nPagine;
+        this.autoreIllustrazioni = autoreIllustrazioni;
+        this.lingua = lingua;
+        this.ddp = ddp;
+        this.hide = hide;
+        this.dataDiCreazione = dataDiCreazione;
+        this.ultimaModifica = ultimaModifica;
+    }
 
-    public BookDto(int id, String titolo, String autore) {
+    public BookDto(Book b) {
+        this.id = b.getId();
+        this.titolo = b.getTitolo();
+        this.autore = b.getAutore();
+        this.isbn = b.getIsbn();
+        this.categoria = b.getCategoria();
+        this.genere = b.getGenere();
+        this.hide = b.isHide();
+        this.lingua = b.getLingua();
+        this.nPagine = b.getnPagine();
+        this.autoreIllustrazioni = b.getAutoreIllustrazioni();
+        this.ddp = b.getDdp();
+        this.ultimaModifica = (Date) b.getUltimaModifica();
+        this.dataDiCreazione = (Date) b.getDataDiCreazione();
     }
 
     @Override
@@ -26,29 +58,30 @@ public class BookDto {
         return "BookDto{" +
                 "id=" + id +
                 ", titolo='" + titolo + '\'' +
+                ", isbn='" + isbn + '\'' +
                 ", autore='" + autore + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", genere='" + genere + '\'' +
                 ", nPagine=" + nPagine +
                 ", autoreIllustrazioni='" + autoreIllustrazioni + '\'' +
                 ", lingua='" + lingua + '\'' +
+                ", ddp=" + ddp +
+                ", hide=" + hide +
+                ", dataDiCreazione=" + dataDiCreazione +
+                ", ultimaModifica=" + ultimaModifica +
                 '}';
     }
 
+    //
     public Book toBook() {
-        Book book = new Book();
-        book.setTitolo(this.fullName);
-        book.setIsbn(""); // Imposta l'ISBN a vuoto o inizializzalo in base alle tue esigenze
-        book.setAutore(""); // Imposta l'autore a vuoto o inizializzalo in base alle tue esigenze
-        book.setCategoria(""); // Imposta la categoria a vuoto o inizializzala in base alle tue esigenze
-        book.setGenere(""); // Imposta il genere a vuoto o inizializzalo in base alle tue esigenze
-        book.setnPagine(0); // Imposta il numero di pagine a 0 o inizializzalo in base alle tue esigenze
-        book.setAutoreIllustrazioni(""); // Imposta l'autore delle illustrazioni a vuoto o inizializzalo in base alle tue esigenze
-        book.setLingua(""); // Imposta la lingua a vuoto o inizializzala in base alle tue esigenze
-        book.setDdp(java.sql.Date.valueOf(LocalDate.of(1000, 1, 1))); // Imposta la data di pubblicazione a una data predefinita o inizializzala in base alle tue esigenze
-        book.setHide(false); // Imposta il flag "hide" a false o inizializzalo in base alle tue esigenze
-        book.setDataDiCreazione(new java.sql.Date(System.currentTimeMillis())); // Imposta la data di creazione a quella corrente o inizializzala in base alle tue esigenze
-        book.setUltimaModifica(new java.sql.Date(System.currentTimeMillis())); // Imposta la data di ultima modifica a quella corrente o inizializzala in base alle tue esigenze
-        return book;
+        String[] tokens = titolo.split(" ");
+
+        if (tokens.length >= 2) {
+            String titoloLibro = tokens[0] + " " + tokens[1];
+            return new Book(id, titoloLibro, isbn, autore, categoria, genere, nPagine, autoreIllustrazioni, lingua, ddp, hide, dataDiCreazione, ultimaModifica);
+        } else {
+            // Se il campo 'titolo' non contiene abbastanza token, crea comunque un libro con il titolo presente
+            return new Book(id, titolo, isbn, autore, categoria, genere, nPagine, autoreIllustrazioni, lingua, ddp, hide, dataDiCreazione, ultimaModifica);
+        }
     }
 }
