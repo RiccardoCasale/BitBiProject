@@ -1,6 +1,7 @@
 package com.example.BitBi.service.abstruction;
 
 
+import com.example.BitBi.dto.BookDto;
 import com.example.BitBi.entities.Book;
 
 import java.util.List;
@@ -9,15 +10,15 @@ import java.util.Optional;
 public interface BookService {
 
     // Metodo per ottenere tutti i libri
-    List<Book> getAllBooks();
+    List<BookDto> getAllBooks();
 
     // Metodo per trovare un libro per ID
-    Optional<Book> findBookById(long id);
+    BookDto findBookById(long id);
 
     // Metodo per creare o aggiornare un libro
-    Book createBook(Book book);
+    BookDto createBook(BookDto bookDto);
 
-    void updateBook(Book book);
+    BookDto updateBook(BookDto bookDto);
 
     // Metodo per eliminare un libro per ID
     void deleteBookById(long id);

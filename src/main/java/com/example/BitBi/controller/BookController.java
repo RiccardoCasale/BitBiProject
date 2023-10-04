@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class BookController {
@@ -39,24 +37,16 @@ public class BookController {
      */
     @GetMapping(value = "/book")
     public ResponseEntity<Iterable<BookDto>> getAllBooks(){
-        List<BookDto> bookDtoList = new ArrayList<>();
-        var books = bookService.getAllBooks();
-        for(Book  book : books){
-            BookDto bookDto = new BookDto(book.getId() , book.getTitolo() , book.getAutore());
-            bookDtoList.add(bookDto);
-        }
-        //Restituisce la lista DTO dei libri con uno status http OK
-        return new ResponseEntity<>(bookDtoList, HttpStatus.OK);
+
+        return new ResponseEntity<>(bookService.getAllBooks(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/book/{id}")
     public ResponseEntity<BookDto> findByIdDto(@PathVariable long id){
-        Optional <Book> bookOptional = bookService.findBookById(id);
-        if(bookOptional.isEmpty()){
+        BookDto bookDto = bookService.findBookById(id);
+        if(bookDto == null){
             return new ResponseEntity<>(null , HttpStatus.NOT_FOUND);
         }
-        Book b = bookOptional.get();
-        BookDto bookDto = new BookDto(b.getId(), b.getTitolo(), b.getAutore());
         return new ResponseEntity<>(bookDto , HttpStatus.OK);
     }
 
@@ -70,11 +60,7 @@ public class BookController {
 
     @DeleteMapping(value = "/book/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable long id) {
-        Optional<Book> optionalB = bookService.findBookById(id);
-        if (optionalB.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        bookService.deleteBookById(id);
+
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

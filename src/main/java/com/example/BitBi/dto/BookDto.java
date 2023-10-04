@@ -1,10 +1,19 @@
 package com.example.BitBi.dto;
 
 import com.example.BitBi.entities.Book;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 // DATA TRANSFER OBJECT. È un design pattern. Lo usiamo per trasferire dati tra i diversi componenti dell'applicazione
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookDto {
 
     private int id;
@@ -16,26 +25,10 @@ public class BookDto {
     private int nPagine;
     private String autoreIllustrazioni;
     private String lingua;
-    private Date ddp;
+    private LocalDate ddp;
     private boolean hide;
     private Date dataDiCreazione;
     private Date ultimaModifica;
-
-    public BookDto(int id, String titolo, String autore, String isbn, String categoria, String genere, int nPagine, String autoreIllustrazioni, String lingua, Date ddp, boolean hide, Date dataDiCreazione, Date ultimaModifica) {
-        this.id = id;
-        this.titolo = titolo;
-        this.isbn = isbn;
-        this.autore = autore;
-        this.categoria = categoria;
-        this.genere = genere;
-        this.nPagine = nPagine;
-        this.autoreIllustrazioni = autoreIllustrazioni;
-        this.lingua = lingua;
-        this.ddp = ddp;
-        this.hide = hide;
-        this.dataDiCreazione = dataDiCreazione;
-        this.ultimaModifica = ultimaModifica;
-    }
 
     public BookDto(Book b) {
         this.id = b.getId();
@@ -46,31 +39,13 @@ public class BookDto {
         this.genere = b.getGenere();
         this.hide = b.isHide();
         this.lingua = b.getLingua();
-        this.nPagine = b.getnPagine();
+        this.nPagine = b.getNPagine();
         this.autoreIllustrazioni = b.getAutoreIllustrazioni();
         this.ddp = b.getDdp();
         this.ultimaModifica = (Date) b.getUltimaModifica();
         this.dataDiCreazione = (Date) b.getDataDiCreazione();
     }
 
-    @Override
-    public String toString() {
-        return "BookDto{" +
-                "id=" + id +
-                ", titolo='" + titolo + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", autore='" + autore + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", genere='" + genere + '\'' +
-                ", nPagine=" + nPagine +
-                ", autoreIllustrazioni='" + autoreIllustrazioni + '\'' +
-                ", lingua='" + lingua + '\'' +
-                ", ddp=" + ddp +
-                ", hide=" + hide +
-                ", dataDiCreazione=" + dataDiCreazione +
-                ", ultimaModifica=" + ultimaModifica +
-                '}';
-    }
 
     //
     public Book toBook() {
