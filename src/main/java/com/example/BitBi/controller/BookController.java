@@ -52,10 +52,8 @@ public class BookController {
 
     @PostMapping(value = "/book")
     public ResponseEntity<BookDto> createBookDto(@RequestBody BookDto bookDto){
-        Book b = bookDto.toBook();
-        bookService.createBook(b);
-        BookDto bDto = new BookDto(b);
-        return new ResponseEntity<>(bDto , HttpStatus.CREATED);
+        BookDto result = bookService.createBook(bookDto);
+        return new ResponseEntity<>(result , HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/book/{id}")
@@ -63,53 +61,4 @@ public class BookController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @RestController
-    @RequestMapping("/book")
-    public class BookControllers {
-
-        @Autowired
-        private BookService bookService;
-
-        @GetMapping("/{id}")
-        public ResponseEntity<BookDto> getBook(@PathVariable int id) {
-            Optional<Book> optionalB = bookService.findBookById(id);
-            return optionalB.map(book -> ResponseEntity.ok(new BookDto(book))).orElseGet(() -> ResponseEntity.notFound().build());
-        }
-
-        @PostMapping
-        public ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto) {
-            Book book = bookDto.toBook();
-            Book createdBook = bookService.createBook(book);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new BookDto(createdBook));
-        }
-
-        @PutMapping("/{id}")
-        public ResponseEntity<Void> updateBook(@RequestBody BookDto bookDto, @PathVariable int id) {
-            Optional<Book> optionalBook = bookService.findBookById(id);
-            if (optionalBook.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-            Book book = bookDto.toBook();
-            book.setId(id);
-            bookService.updateBook(book);
-            return ResponseEntity.noContent().build();
-        }
-
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Void> deleteBook(@PathVariable int id) {
-            Optional<Book> optionalB = bookService.findBookById(id);
-            if (optionalB.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-            bookService.deleteBookById(id);
-            return ResponseEntity.noContent().build();
-        }
-    }
-
-
-
-
-
-
 }
